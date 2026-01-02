@@ -16,8 +16,9 @@ jobs:
     - name: Setup Theos
       run: |
         sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
-        # تحميل SDK مصغر لضمان نجاح البناء
-        sudo git clone https://github.com/theos/sdks.git /opt/theos/sdks
+        # تنظيف وتحميل الـ SDKs بشكل صحيح لتجنب خطأ 128
+        sudo git clone https://github.com/theos/sdks.git /opt/theos/sdks_temp
+        sudo mv /opt/theos/sdks_temp/* /opt/theos/sdks/ || true
         echo "THEOS=/opt/theos" >> $GITHUB_ENV
 
     - name: Build Tweak
