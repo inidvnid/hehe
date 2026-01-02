@@ -1,0 +1,8 @@
+Package: com.inidvnid.raveghost
+Name: RaveGhostMode
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Invisible join for Rave app
+Author: inidvnid
+Section: Tweaks
