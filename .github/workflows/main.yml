@@ -1,1 +1,30 @@
+name: Build Tweak
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Theos
+      run: |
+        sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+        echo "THEOS=/opt/theos" >> $GITHUB_ENV
+
+    - name: Build Tweak
+      run: |
+        make package FINALPACKAGE=1
+        
+    - name: Upload Result
+      uses: actions/upload-artifact@v3
+      with:
+        name: RaveGhostDylib
+        path: packages/*.deb
 
